@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Redes Neuronales para Pronóstico de Precipitación | Redes Neuronales para Pronóstico de Precipitación</title>
+  <meta name="description" content="5 Redes Neuronales para Pronóstico de Precipitación | Redes Neuronales para Pronóstico de Precipitación" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Redes Neuronales para Pronóstico de Precipitación | Redes Neuronales para Pronóstico de Precipitación" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Redes Neuronales para Pronóstico de Precipitación | Redes Neuronales para Pronóstico de Precipitación" />
+  
+  
+  
+
+<meta name="author" content="Cristian Eduardo Reyes Cardenas" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelo-prophet.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #232629;
+    color: #7a7c7d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+div.sourceCode
+  { color: #cfcfc2; background-color: #232629; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Importancia del Análisis de las Remesas</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#justificación-del-uso-de-datos-de-remesas"><i class="fa fa-check"></i><b>1.1</b> Justificación del uso de datos de remesas</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#datos-utilizados"><i class="fa fa-check"></i><b>1.2</b> Datos utilizados</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#objetivo"><i class="fa fa-check"></i><b>1.3</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html"><i class="fa fa-check"></i><b>2</b> Preparación de los Datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html#análisi-exploratorio-de-los-datos"><i class="fa fa-check"></i><b>2.1</b> Análisi exploratorio de los datos</a></li>
+<li class="chapter" data-level="2.2" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html#evolución-de-la-serie-de-remesas"><i class="fa fa-check"></i><b>2.2</b> Evolución de la serie de Remesas</a></li>
+<li class="chapter" data-level="2.3" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html#análisis-estacionalidad"><i class="fa fa-check"></i><b>2.3</b> Análisis Estacionalidad</a></li>
+<li class="chapter" data-level="2.4" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html#visualización-comparativa-mensual"><i class="fa fa-check"></i><b>2.4</b> Visualización comparativa mensual</a></li>
+<li class="chapter" data-level="2.5" data-path="preparación-de-los-datos.html"><a href="preparación-de-los-datos.html#análisis-de-tendencias-anuales"><i class="fa fa-check"></i><b>2.5</b> Análisis de tendencias Anuales</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><i class="fa fa-check"></i><b>3</b> Descomposición y Análisis de Estacionariedad en Series Temporales de Precipitación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#metodología"><i class="fa fa-check"></i><b>3.1</b> Metodología</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#evaluación-de-la-estacionariedad"><i class="fa fa-check"></i><b>3.1.1</b> Evaluación de la Estacionariedad:</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#descomposición-de-la-serie-temporal"><i class="fa fa-check"></i><b>3.1.2</b> Descomposición de la Serie Temporal:</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#transformación-logarítmica-y-análisis-de-diferenciación"><i class="fa fa-check"></i><b>3.1.3</b> Transformación Logarítmica y Análisis de Diferenciación:</a></li>
+<li class="chapter" data-level="3.1.4" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#estructura-temporal"><i class="fa fa-check"></i><b>3.1.4</b> Estructura Temporal</a></li>
+<li class="chapter" data-level="3.1.5" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#optimización-de-la-serie"><i class="fa fa-check"></i><b>3.1.5</b> Optimización de la Serie</a></li>
+<li class="chapter" data-level="3.1.6" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#discusión-de-resultados"><i class="fa fa-check"></i><b>3.1.6</b> Discusión de Resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#metodologia"><i class="fa fa-check"></i><b>3.2</b> Metodologia</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#implementación-del-método-holt-winters-para-datos-mensuales"><i class="fa fa-check"></i><b>3.2.1</b> Implementación del método Holt-Winters para datos mensuales</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#análisis-del-modelo-holt-winters-multiplicativo"><i class="fa fa-check"></i><b>3.2.2</b> Análisis del Modelo Holt-Winters Multiplicativo</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#análisis-del-modelo-holt-winters-aditivo"><i class="fa fa-check"></i><b>3.2.3</b> Análisis del Modelo Holt-Winters Aditivo</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#métodos-de-suavización-para-datos-mensuales"><i class="fa fa-check"></i><b>3.2.4</b> Métodos de Suavización para Datos Mensuales</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#análisis-de-componentes-datos-mensuales"><i class="fa fa-check"></i><b>3.2.5</b> Análisis de Componentes (Datos Mensuales)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#analisis-de-componentes-y-parametros"><i class="fa fa-check"></i><b>3.3</b> Analisis de Componentes y Parametros</a></li>
+<li class="chapter" data-level="3.4" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#metodología-1"><i class="fa fa-check"></i><b>3.4</b> Metodología</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#análisis-exploratorio-de-la-serie"><i class="fa fa-check"></i><b>3.4.1</b> Análisis Exploratorio de la Serie</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#verificación-y-transformación-para-estacionariedad"><i class="fa fa-check"></i><b>3.5</b> Verificación y Transformación para Estacionariedad</a></li>
+<li class="chapter" data-level="3.6" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#modelo-arima"><i class="fa fa-check"></i><b>3.6</b> Modelo ARIMA</a></li>
+<li class="chapter" data-level="3.7" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#validación-de-modelos"><i class="fa fa-check"></i><b>3.7</b> Validación de modelos</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#análisis-de-los-tests-de-validación"><i class="fa fa-check"></i><b>3.7.1</b> Análisis de los Tests de Validación</a></li>
+<li class="chapter" data-level="3.7.2" data-path="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html"><a href="descomposición-y-análisis-de-estacionariedad-en-series-temporales-de-precipitación.html#evaluación-del-modelo"><i class="fa fa-check"></i><b>3.7.2</b> Evaluación del Modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modelo-prophet.html"><a href="modelo-prophet.html"><i class="fa fa-check"></i><b>4</b> Modelo Prophet para Series Temporales</a></li>
+<li class="chapter" data-level="5" data-path="redes-neuronales.html"><a href="redes-neuronales.html"><i class="fa fa-check"></i><b>5</b> Redes Neuronales para Pronóstico de Precipitación</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="redes-neuronales.html"><a href="redes-neuronales.html#redes-neuronales-para-pronóstico-de-remesas"><i class="fa fa-check"></i><b>5.1</b> Redes Neuronales para Pronóstico de Remesas</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="redes-neuronales.html"><a href="redes-neuronales.html#metodología-2"><i class="fa fa-check"></i><b>5.1.1</b> Metodología</a></li>
+<li class="chapter" data-level="5.1.2" data-path="redes-neuronales.html"><a href="redes-neuronales.html#preparación-de-datos"><i class="fa fa-check"></i><b>5.1.2</b> Preparación de Datos</a></li>
+<li class="chapter" data-level="5.1.3" data-path="redes-neuronales.html"><a href="redes-neuronales.html#entrenamiento-de-redes-neuronales"><i class="fa fa-check"></i><b>5.1.3</b> Entrenamiento de Redes Neuronales</a></li>
+<li class="chapter" data-level="5.1.4" data-path="redes-neuronales.html"><a href="redes-neuronales.html#evaluación-de-resultados"><i class="fa fa-check"></i><b>5.1.4</b> Evaluación de Resultados</a></li>
+<li class="chapter" data-level="5.1.5" data-path="redes-neuronales.html"><a href="redes-neuronales.html#análisis-de-resultados"><i class="fa fa-check"></i><b>5.1.5</b> Análisis de Resultados</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes Neuronales para Pronóstico de Precipitación</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="redes-neuronales" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Redes Neuronales para Pronóstico de Precipitación<a href="redes-neuronales.html#redes-neuronales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="redes-neuronales-para-pronóstico-de-remesas" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Redes Neuronales para Pronóstico de Remesas<a href="redes-neuronales.html#redes-neuronales-para-pronóstico-de-remesas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El pronóstico de remesas es un desafío debido a la naturaleza compleja y dinámica de los factores económicos que las afectan. Este proyecto utiliza redes neuronales recurrentes, específicamente las arquitecturas Elman y Jordan, para modelar y predecir las tendencias en las remesas mensuales enviadas a Colombia.</p>
+<div id="metodología-2" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Metodología<a href="redes-neuronales.html#metodología-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La metodología se estructura en tres fases principales:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Preparación y transformación de datos:</strong> Incluye la normalización de los datos y la creación de variables de retardo para capturar la dependencia temporal.</li>
+<li><strong>Entrenamiento de modelos:</strong> Entrenamiento de redes neuronales recurrentes Elman y Jordan, optimizadas para predecir las remesas.</li>
+<li><strong>Evaluación de resultados:</strong> Análisis del desempeño de los modelos utilizando métricas de error estándar y visualizaciones.</li>
+</ol>
+</div>
+<div id="preparación-de-datos" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Preparación de Datos<a href="redes-neuronales.html#preparación-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="normalización-de-datos" class="section level4 hasAnchor" number="5.1.2.1">
+<h4><span class="header-section-number">5.1.2.1</span> Normalización de Datos<a href="redes-neuronales.html#normalización-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para optimizar el rendimiento de las redes neuronales, los datos de remesas se normalizan entre 0 y 1.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="redes-neuronales.html#cb72-1" tabindex="-1"></a><span class="co"># Normalización de datos</span></span>
+<span id="cb72-2"><a href="redes-neuronales.html#cb72-2" tabindex="-1"></a>ts_remesas <span class="ot">&lt;-</span> ts_remesas_mensual  <span class="co"># Asumimos que `ts_remesas_mensual` es la serie temporal de remesas</span></span>
+<span id="cb72-3"><a href="redes-neuronales.html#cb72-3" tabindex="-1"></a>inputs <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(ts_remesas)</span>
+<span id="cb72-4"><a href="redes-neuronales.html#cb72-4" tabindex="-1"></a>inputs_norm <span class="ot">&lt;-</span> (inputs <span class="sc">-</span> <span class="fu">min</span>(inputs)) <span class="sc">/</span> (<span class="fu">max</span>(inputs) <span class="sc">-</span> <span class="fu">min</span>(inputs))</span></code></pre></div>
+</details>
+</div>
+<div id="creación-de-variables-de-retardo" class="section level4 hasAnchor" number="5.1.2.2">
+<h4><span class="header-section-number">5.1.2.2</span> Creación de Variables de Retardo<a href="redes-neuronales.html#creación-de-variables-de-retardo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Se generan 10 variables de retardo para capturar la relación temporal de las remesas.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="redes-neuronales.html#cb73-1" tabindex="-1"></a><span class="co"># Crear dataframe con rezagos</span></span>
+<span id="cb73-2"><a href="redes-neuronales.html#cb73-2" tabindex="-1"></a>df_remesas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb73-3"><a href="redes-neuronales.html#cb73-3" tabindex="-1"></a>  <span class="at">valor =</span> inputs_norm,</span>
+<span id="cb73-4"><a href="redes-neuronales.html#cb73-4" tabindex="-1"></a>  <span class="at">x1 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">1</span>),</span>
+<span id="cb73-5"><a href="redes-neuronales.html#cb73-5" tabindex="-1"></a>  <span class="at">x2 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">2</span>),</span>
+<span id="cb73-6"><a href="redes-neuronales.html#cb73-6" tabindex="-1"></a>  <span class="at">x3 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">3</span>),</span>
+<span id="cb73-7"><a href="redes-neuronales.html#cb73-7" tabindex="-1"></a>  <span class="at">x4 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">4</span>),</span>
+<span id="cb73-8"><a href="redes-neuronales.html#cb73-8" tabindex="-1"></a>  <span class="at">x5 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">5</span>),</span>
+<span id="cb73-9"><a href="redes-neuronales.html#cb73-9" tabindex="-1"></a>  <span class="at">x6 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">6</span>),</span>
+<span id="cb73-10"><a href="redes-neuronales.html#cb73-10" tabindex="-1"></a>  <span class="at">x7 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">7</span>),</span>
+<span id="cb73-11"><a href="redes-neuronales.html#cb73-11" tabindex="-1"></a>  <span class="at">x8 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">8</span>),</span>
+<span id="cb73-12"><a href="redes-neuronales.html#cb73-12" tabindex="-1"></a>  <span class="at">x9 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">9</span>),</span>
+<span id="cb73-13"><a href="redes-neuronales.html#cb73-13" tabindex="-1"></a>  <span class="at">x10 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(inputs_norm, <span class="dv">10</span>)</span>
+<span id="cb73-14"><a href="redes-neuronales.html#cb73-14" tabindex="-1"></a>)</span>
+<span id="cb73-15"><a href="redes-neuronales.html#cb73-15" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="redes-neuronales.html#cb73-16" tabindex="-1"></a>df_remesas <span class="ot">&lt;-</span> df_remesas <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb73-17"><a href="redes-neuronales.html#cb73-17" tabindex="-1"></a></span>
+<span id="cb73-18"><a href="redes-neuronales.html#cb73-18" tabindex="-1"></a><span class="co"># Separar datos en conjuntos de entrenamiento y prueba</span></span>
+<span id="cb73-19"><a href="redes-neuronales.html#cb73-19" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df_remesas)</span>
+<span id="cb73-20"><a href="redes-neuronales.html#cb73-20" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fl">0.9</span> <span class="sc">*</span> n)</span>
+<span id="cb73-21"><a href="redes-neuronales.html#cb73-21" tabindex="-1"></a>inputs_train <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df_remesas[train, <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>])</span>
+<span id="cb73-22"><a href="redes-neuronales.html#cb73-22" tabindex="-1"></a>outputs_train <span class="ot">&lt;-</span> df_remesas<span class="sc">$</span>valor[train]</span>
+<span id="cb73-23"><a href="redes-neuronales.html#cb73-23" tabindex="-1"></a>inputs_test <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df_remesas[<span class="sc">-</span>train, <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>])</span>
+<span id="cb73-24"><a href="redes-neuronales.html#cb73-24" tabindex="-1"></a>outputs_test <span class="ot">&lt;-</span> df_remesas<span class="sc">$</span>valor[<span class="sc">-</span>train]</span></code></pre></div>
+</details>
+</div>
+</div>
+<div id="entrenamiento-de-redes-neuronales" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Entrenamiento de Redes Neuronales<a href="redes-neuronales.html#entrenamiento-de-redes-neuronales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="red-neuronal-elman" class="section level4 hasAnchor" number="5.1.3.1">
+<h4><span class="header-section-number">5.1.3.1</span> Red Neuronal Elman<a href="redes-neuronales.html#red-neuronal-elman" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="redes-neuronales.html#cb74-1" tabindex="-1"></a><span class="co"># Entrenar red Elman</span></span>
+<span id="cb74-2"><a href="redes-neuronales.html#cb74-2" tabindex="-1"></a>fit_elman <span class="ot">&lt;-</span> <span class="fu">elman</span>(</span>
+<span id="cb74-3"><a href="redes-neuronales.html#cb74-3" tabindex="-1"></a>  inputs_train, </span>
+<span id="cb74-4"><a href="redes-neuronales.html#cb74-4" tabindex="-1"></a>  outputs_train, </span>
+<span id="cb74-5"><a href="redes-neuronales.html#cb74-5" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>),  <span class="co"># Dos capas ocultas</span></span>
+<span id="cb74-6"><a href="redes-neuronales.html#cb74-6" tabindex="-1"></a>  <span class="at">learnFuncParams =</span> <span class="fu">c</span>(<span class="fl">0.1</span>), </span>
+<span id="cb74-7"><a href="redes-neuronales.html#cb74-7" tabindex="-1"></a>  <span class="at">maxit =</span> <span class="dv">5000</span></span>
+<span id="cb74-8"><a href="redes-neuronales.html#cb74-8" tabindex="-1"></a>)</span>
+<span id="cb74-9"><a href="redes-neuronales.html#cb74-9" tabindex="-1"></a></span>
+<span id="cb74-10"><a href="redes-neuronales.html#cb74-10" tabindex="-1"></a><span class="co"># Visualizar error iterativo</span></span>
+<span id="cb74-11"><a href="redes-neuronales.html#cb74-11" tabindex="-1"></a><span class="fu">plotIterativeError</span>(fit_elman)</span>
+<span id="cb74-12"><a href="redes-neuronales.html#cb74-12" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Error Iterativo - Red Elman&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" /><!-- --></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="redes-neuronales.html#cb75-1" tabindex="-1"></a><span class="co"># Predicciones</span></span>
+<span id="cb75-2"><a href="redes-neuronales.html#cb75-2" tabindex="-1"></a>pred_elman <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_elman, inputs_test)</span>
+<span id="cb75-3"><a href="redes-neuronales.html#cb75-3" tabindex="-1"></a>pred_elman <span class="ot">&lt;-</span> pred_elman <span class="sc">*</span> (<span class="fu">max</span>(inputs) <span class="sc">-</span> <span class="fu">min</span>(inputs)) <span class="sc">+</span> <span class="fu">min</span>(inputs)</span></code></pre></div>
+</details>
+<p>El gráfico del error iterativo de la Red Neuronal Elman muestra una rápida disminución del error durante las primeras iteraciones del entrenamiento, seguido de una estabilización alrededor de las 500-1000 iteraciones, lo que indica que el modelo ha alcanzado un punto de convergencia. Este comportamiento sugiere que la red ha aprendido los patrones principales de los datos de entrenamiento de manera eficiente. Sin embargo, el análisis debe complementarse con la evaluación en un conjunto de datos de prueba para garantizar que el modelo generaliza correctamente y no presenta sobreajuste. Además, dado que el error se estabiliza rápidamente, sería posible optimizar el tiempo de cómputo reduciendo el número total de iteraciones.</p>
+</div>
+<div id="red-neuronal-jordan" class="section level4 hasAnchor" number="5.1.3.2">
+<h4><span class="header-section-number">5.1.3.2</span> Red Neuronal Jordan<a href="redes-neuronales.html#red-neuronal-jordan" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="redes-neuronales.html#cb76-1" tabindex="-1"></a><span class="co"># Entrenar red Jordan</span></span>
+<span id="cb76-2"><a href="redes-neuronales.html#cb76-2" tabindex="-1"></a>fit_jordan <span class="ot">&lt;-</span> <span class="fu">jordan</span>(</span>
+<span id="cb76-3"><a href="redes-neuronales.html#cb76-3" tabindex="-1"></a>  inputs_train, </span>
+<span id="cb76-4"><a href="redes-neuronales.html#cb76-4" tabindex="-1"></a>  outputs_train, </span>
+<span id="cb76-5"><a href="redes-neuronales.html#cb76-5" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">4</span>,  <span class="co"># Una capa oculta</span></span>
+<span id="cb76-6"><a href="redes-neuronales.html#cb76-6" tabindex="-1"></a>  <span class="at">learnFuncParams =</span> <span class="fu">c</span>(<span class="fl">0.01</span>), </span>
+<span id="cb76-7"><a href="redes-neuronales.html#cb76-7" tabindex="-1"></a>  <span class="at">maxit =</span> <span class="dv">5000</span></span>
+<span id="cb76-8"><a href="redes-neuronales.html#cb76-8" tabindex="-1"></a>)</span>
+<span id="cb76-9"><a href="redes-neuronales.html#cb76-9" tabindex="-1"></a></span>
+<span id="cb76-10"><a href="redes-neuronales.html#cb76-10" tabindex="-1"></a><span class="co"># Visualizar error iterativo</span></span>
+<span id="cb76-11"><a href="redes-neuronales.html#cb76-11" tabindex="-1"></a><span class="fu">plotIterativeError</span>(fit_jordan)</span>
+<span id="cb76-12"><a href="redes-neuronales.html#cb76-12" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Error Iterativo - Red Jordan&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" /><!-- --></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="redes-neuronales.html#cb77-1" tabindex="-1"></a><span class="co"># Predicciones</span></span>
+<span id="cb77-2"><a href="redes-neuronales.html#cb77-2" tabindex="-1"></a>pred_jordan <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_jordan, inputs_test)</span>
+<span id="cb77-3"><a href="redes-neuronales.html#cb77-3" tabindex="-1"></a>pred_jordan <span class="ot">&lt;-</span> pred_jordan <span class="sc">*</span> (<span class="fu">max</span>(inputs) <span class="sc">-</span> <span class="fu">min</span>(inputs)) <span class="sc">+</span> <span class="fu">min</span>(inputs)</span></code></pre></div>
+</details>
+<p>El gráfico del error iterativo de la Red Neuronal Jordan refleja una rápida disminución del error en las primeras iteraciones, estabilizándose posteriormente en un valor bajo. Esto sugiere que el modelo ha logrado capturar eficientemente los patrones de los datos de entrenamiento. Al igual que con la red Elman, se recomienda evaluar el modelo con datos de prueba para verificar su capacidad de generalización y evitar sobreajuste. Además, dado que el error se estabiliza antes de alcanzar el límite máximo de iteraciones, podría ser posible optimizar el tiempo de entrenamiento reduciendo el número total de iteraciones.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="redes-neuronales.html#cb78-1" tabindex="-1"></a><span class="co"># Gráfico de predicciones vs valores reales</span></span>
+<span id="cb78-2"><a href="redes-neuronales.html#cb78-2" tabindex="-1"></a><span class="fu">plot</span>(outputs_test, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb78-3"><a href="redes-neuronales.html#cb78-3" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>,</span>
+<span id="cb78-4"><a href="redes-neuronales.html#cb78-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Predicción de Remesas - Red Elman&quot;</span>,</span>
+<span id="cb78-5"><a href="redes-neuronales.html#cb78-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>,</span>
+<span id="cb78-6"><a href="redes-neuronales.html#cb78-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Remesas (millones)&quot;</span>)</span>
+<span id="cb78-7"><a href="redes-neuronales.html#cb78-7" tabindex="-1"></a><span class="fu">lines</span>(pred_elman, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb78-8"><a href="redes-neuronales.html#cb78-8" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb78-9"><a href="redes-neuronales.html#cb78-9" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Valor Real&quot;</span>, <span class="st">&quot;Predicción Elman&quot;</span>),</span>
+<span id="cb78-10"><a href="redes-neuronales.html#cb78-10" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>), </span>
+<span id="cb78-11"><a href="redes-neuronales.html#cb78-11" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>, </span>
+<span id="cb78-12"><a href="redes-neuronales.html#cb78-12" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+</details>
+<p><img src="figure-html/unnamed-chunk-82-1.png" /><!-- -->
+La gráfica refleja que el modelo de red neuronal Elman captura adecuadamente la tendencia general de las remesas, mostrando una buena correspondencia entre las predicciones (línea roja) y los valores reales (línea negra). Sin embargo, se observan diferencias notables en algunos puntos, particularmente en las caídas abruptas, lo que sugiere que el modelo puede tener dificultades para capturar fluctuaciones rápidas o eventos extremos. Estas discrepancias podrían mejorarse ajustando los hiperparámetros del modelo, incorporando más datos históricos o añadiendo variables explicativas que enriquezcan el contexto del modelado. En términos generales, el modelo muestra un desempeño prometedor con margen para optimizaciones.</p>
+</div>
+</div>
+<div id="evaluación-de-resultados" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Evaluación de Resultados<a href="redes-neuronales.html#evaluación-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para evaluar el desempeño de los modelos, calculamos métricas de error estándar, como RMSE y MAE.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="redes-neuronales.html#cb79-1" tabindex="-1"></a><span class="co"># Métricas de error</span></span>
+<span id="cb79-2"><a href="redes-neuronales.html#cb79-2" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(real, pred) <span class="fu">sqrt</span>(<span class="fu">mean</span>((real <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb79-3"><a href="redes-neuronales.html#cb79-3" tabindex="-1"></a>mae <span class="ot">&lt;-</span> <span class="cf">function</span>(real, pred) <span class="fu">mean</span>(<span class="fu">abs</span>(real <span class="sc">-</span> pred))</span>
+<span id="cb79-4"><a href="redes-neuronales.html#cb79-4" tabindex="-1"></a></span>
+<span id="cb79-5"><a href="redes-neuronales.html#cb79-5" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb79-6"><a href="redes-neuronales.html#cb79-6" tabindex="-1"></a>  <span class="at">Modelo =</span> <span class="fu">c</span>(<span class="st">&quot;Red Elman&quot;</span>, <span class="st">&quot;Red Jordan&quot;</span>),</span>
+<span id="cb79-7"><a href="redes-neuronales.html#cb79-7" tabindex="-1"></a>  <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fu">rmse</span>(outputs_test, pred_elman), <span class="fu">rmse</span>(outputs_test, pred_jordan)),</span>
+<span id="cb79-8"><a href="redes-neuronales.html#cb79-8" tabindex="-1"></a>  <span class="at">MAE =</span> <span class="fu">c</span>(<span class="fu">mae</span>(outputs_test, pred_elman), <span class="fu">mae</span>(outputs_test, pred_jordan))</span>
+<span id="cb79-9"><a href="redes-neuronales.html#cb79-9" tabindex="-1"></a>)</span>
+<span id="cb79-10"><a href="redes-neuronales.html#cb79-10" tabindex="-1"></a></span>
+<span id="cb79-11"><a href="redes-neuronales.html#cb79-11" tabindex="-1"></a><span class="fu">kable</span>(metricas, <span class="at">caption =</span> <span class="st">&quot;Métricas de Error - Redes Neuronales&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:unnamed-chunk-83">Table 5.1: </span>Métricas de Error - Redes Neuronales</caption>
+<thead>
+<tr class="header">
+<th align="left">Modelo</th>
+<th align="right">RMSE</th>
+<th align="right">MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Red Elman</td>
+<td align="right">539.7639</td>
+<td align="right">537.4920</td>
+</tr>
+<tr class="even">
+<td align="left">Red Jordan</td>
+<td align="right">529.3875</td>
+<td align="right">527.1662</td>
+</tr>
+</tbody>
+</table>
+<p>Las métricas de error RMSE y MAE indican un desempeño similar entre las redes neuronales Elman y Jordan, aunque la Red Jordan presenta valores ligeramente menores (RMSE: 532.35 y MAE: 529.96) en comparación con la Red Elman (RMSE: 535.23 y MAE: 533.16), lo que sugiere una precisión marginalmente superior. La pequeña diferencia entre RMSE y MAE en ambos modelos refleja que los errores son consistentes y no están influenciados por valores extremos. En general, ambas redes son efectivas para modelar las remesas, pero la Red Jordan podría considerarse como la opción preferida debido a su mejor desempeño general, aunque las diferencias son mínimas</p>
+</div>
+<div id="análisis-de-resultados" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Análisis de Resultados<a href="redes-neuronales.html#análisis-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ambos modelos, Elman y Jordan, capturan satisfactoriamente la dinámica general de las remesas. Sin embargo, el modelo Elman parece ofrecer predicciones ligeramente más precisas en términos de error promedio. Es posible mejorar el desempeño incluyendo variables adicionales como indicadores macroeconómicos.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelo-prophet.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
